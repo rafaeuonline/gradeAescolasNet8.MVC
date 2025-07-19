@@ -1,0 +1,63 @@
+﻿@model gradeAescolas.MVC.Models.EmpresaViewModel
+
+<div class="col-xl-6">
+    <div class="card height-equal">
+        <div class="card-header pb-0">
+            <h4>Cadastro de Nova Empresa</h4>
+            <p class="f-m-light mt-1">
+                Insira as informações abaixo para criar uma Nova Empresa.
+            </p>
+        </div>
+        <form class="form theme-form" asp-action="CriarNovaEmpresa">
+            <div class="card-body custom-input" asp-validation-summary="All">
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-3 row">
+                            <label asp-for="NomeFantasia" class="col-sm-3">Nome Fantasia</label>
+                            <div class="col-sm-9">
+                                <input asp-for="NomeFantasia" class="form-control" type="text" placeholder="Insira o Nome Fantasia">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label asp-for="RazaoSocial" class="col-sm-3">Razão Social</label>
+                            <div class="col-sm-9">
+                                <input asp-for="RazaoSocial" class="form-control" type="text" placeholder="Insira a Razão Social">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label asp-for="CNPJFormatado" class="col-sm-3">CNPJ</label>
+                            <div class="col-sm-9">
+                                <input asp-for="CNPJFormatado" class="form-control" type="text" placeholder="Insira o CNPJ">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label asp-for="Email" class="col-sm-3">Email</label>
+                            <div class="col-sm-9">
+                                <input asp-for="Email" class="form-control" type="email" placeholder="Insira o E-mail">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label asp-for="TelefoneFormatado" class="col-sm-3">Telefone</label>
+                            <div class="col-sm-9">
+                                <input asp-for="TelefoneFormatado" class="form-control" type="text" placeholder="Insira o Telefone">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-end">
+                <div class="col-sm-9 offset-sm-3">
+                    @* <button class="btn btn-primary me-3" type="submit" value="Criar">Submit</button> *@
+                    <input class="btn btn-primary me-3" type="submit" value="Criar">
+                    <a asp-action="Index" class="btn btn-light">Retornar</a>
+                </div>
+            </div>
+            @if(ViewBag.Erro != null)
+            {
+                <div class="alert alert-danger">
+                    <h4 class="alert-heading">@ViewBag.Erro</h4>
+                </div>
+            }
+        </form>
+    </div>
+</div>

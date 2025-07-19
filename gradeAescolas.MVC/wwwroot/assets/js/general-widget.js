@@ -26,7 +26,7 @@ const salesStatsOption = {
       endAngle: 360,
       hollow: { 
         size: '75%',
-        image: '../assets/images/apexchart/radial-image.png',
+        image: '/assets/images/apexchart/radial-image.png',
         imageWidth: 140,
         imageHeight: 140, 
         imageClipped: false,

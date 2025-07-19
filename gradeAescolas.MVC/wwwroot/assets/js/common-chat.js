@@ -11,8 +11,8 @@ const BOT_MSGS = [
 ];
 
 // Icons made by Freepik from www.flaticon.com
-const BOT_IMG = "../assets/images/blog/4.jpg";
-const PERSON_IMG = "../assets/images/blog/comment.jpg";
+const BOT_IMG = "/assets/images/blog/4.jpg";
+const PERSON_IMG = "/assets/images/blog/comment.jpg";
 const BOT_NAME = "Theresa Webb";
 const PERSON_NAME = "Darrell Steward";
 

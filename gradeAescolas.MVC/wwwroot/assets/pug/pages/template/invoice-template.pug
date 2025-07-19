@@ -25,7 +25,7 @@ html(lang='en')
                     li.breadcrumb-item
                       a(href='index.html')
                         svg.stroke-icon
-                          use(href='../assets/svg/icon-sprite.svg#stroke-home')
+                          use(href='/assets/svg/icon-sprite.svg#stroke-home')
                     li.breadcrumb-item ECommerce
                     li.breadcrumb-item.active Invoice
           // Container-fluid starts
@@ -41,8 +41,8 @@ html(lang='en')
                             .col-sm-6
                               .d-flex
                                 .media-left
-                                  img.media-object.img-80.img-fluid.for-light(src='../assets/images/logo/logo.png', alt='')
-                                  img.media-object.img-80.img-fluid.for-dark(src='../assets/images/logo/logo_dark.png', alt='')
+                                  img.media-object.img-80.img-fluid.for-light(src='/assets/images/logo/logo.png', alt='')
+                                  img.media-object.img-80.img-fluid.for-dark(src='/assets/images/logo/logo_dark.png', alt='')
                                 .flex-grow-1.m-l-20.text-right
                                   h3.media-heading Zono
                                   p
@@ -68,7 +68,7 @@ html(lang='en')
                           .col-md-4
                             .d-flex
                               .media-left
-                                img.media-object.rounded-circle.img-60(src='../assets/images/user/1.jpg', alt='')
+                                img.media-object.rounded-circle.img-60(src='/assets/images/user/1.jpg', alt='')
                               .flex-grow-1.m-l-20
                                 h3.media-heading Johan Deo
                                 p
@@ -159,7 +159,7 @@ html(lang='en')
                                   |   Payment is expected within 31 days; please process this invoice within that time. There will be a 5% interest charge per month on late invoices.
                             .col-md-4
                               form.text-end
-                                input(type='image', src='../assets/images/other-images/paypal.png', name='submit', alt='PayPal - The safer, easier way to pay online!')
+                                input(type='image', src='/assets/images/other-images/paypal.png', name='submit', alt='PayPal - The safer, easier way to pay online!')
                         // End InvoiceBot
                       .col-sm-12.text-center.mt-3
                         button.btn.btn.btn-primary.me-2(type='button', onclick='myFunction()') Print

@@ -4,30 +4,30 @@
     .header-logo-wrapper.col-auto.p-0
       .logo-wrapper
         a(href='index.html') 
-          img.img-fluid.for-light(src='../assets/images/logo/logo.png', alt='')
-          img.img-fluid.for-dark(src='../assets/images/logo/logo_dark.png', alt='')
+          img.img-fluid.for-light(src='/assets/images/logo/logo.png', alt='')
+          img.img-fluid.for-dark(src='/assets/images/logo/logo_dark.png', alt='')
       .toggle-sidebar
         svg.sidebar-toggle 
-          use(href='../assets/svg/icon-sprite.svg#stroke-animation')
+          use(href='/assets/svg/icon-sprite.svg#stroke-animation')
     form.col-sm-4(action='#', method='get').form-inline.search-full.d-none.d-xl-block
       .form-group
         .Typeahead.Typeahead--twitterUsers
           .u-posRelative
             input.demo-input.Typeahead-input.form-control-plaintext.w-100(type='text' placeholder='Type to Search ..' name='q' title='' autofocus)
             svg.search-bg.svg-color
-              use(href='../assets/svg/icon-sprite.svg#search')
+              use(href='/assets/svg/icon-sprite.svg#search')
     .nav-right.col-xl-8.col-lg-12.col-auto.pull-right.right-header.p-0
       ul.nav-menus
         li.serchinput
           .serchbox
             svg
-              use(href='../assets/svg/icon-sprite.svg#search')
+              use(href='/assets/svg/icon-sprite.svg#search')
           .form-group.search-form
               input(type="text" placeholder="Search here...")
         li.onhover-dropdown 
           .notification-box
             svg 
-              use(href='../assets/svg/icon-sprite.svg#Bell')
+              use(href='/assets/svg/icon-sprite.svg#Bell')
           .onhover-show-div.notification-dropdown 
             h6.f-18.mb-0.dropdown-title Notifications
             div.notification-card
@@ -35,7 +35,7 @@
                 li
                   div.user-notification
                     div
-                      img(src="../assets/images/avtar/2.jpg" alt="avatar") 
+                      img(src="/assets/images/avtar/2.jpg" alt="avatar") 
                     div.user-description
                       a(href="letter-box.html")
                         h4 You have new finical page design.
@@ -49,7 +49,7 @@
                 li
                   div.user-notification
                     div
-                      img(src="../assets/images/avtar/17.jpg" alt="avatar") 
+                      img(src="/assets/images/avtar/17.jpg" alt="avatar") 
                     div.user-description
                       a(href="letter-box.html")
                         h4 Congrats! you all task for today.
@@ -63,7 +63,7 @@
                 li 
                   div.user-notification
                     div 
-                      img(src="../assets/images/avtar/18.jpg" alt="avatar") 
+                      img(src="/assets/images/avtar/18.jpg" alt="avatar") 
                     div.user-description
                       a(href="letter-box.html")
                         h4 You have new in landing page design.
@@ -77,7 +77,7 @@
                 li
                   div.user-notification
                     div
-                      img(src="../assets/images/avtar/19.jpg" alt="avatar") 
+                      img(src="/assets/images/avtar/19.jpg" alt="avatar") 
                     div.user-description
                       a(href="letter-box.html")
                         h4 Congrats! you all task for today.
@@ -93,7 +93,7 @@
         
         li.onhover-dropdown
           svg
-            use(href='../assets/svg/icon-sprite.svg#Bookmark')
+            use(href='/assets/svg/icon-sprite.svg#Bookmark')
           .onhover-show-div.bookmark-flip
             .flip-card
               .flip-card-inner
@@ -133,7 +133,7 @@
         li.onhover-dropdown 
           .message.position-relative
             svg
-              use(href='../assets/svg/icon-sprite.svg#Message')
+              use(href='/assets/svg/icon-sprite.svg#Message')
             span.rounded-pill.badge-danger
           .onhover-show-div.message-dropdown
             h6.f-18.mb-0.dropdown-title Message                               
@@ -141,7 +141,7 @@
               li
                 .d-flex.align-items-start
                   .message-img.bg-light-primary
-                    img(src="../assets/images/user/3.jpg" alt="")
+                    img(src="/assets/images/user/3.jpg" alt="")
                   .flex-grow-1
                     h5
                       a(href="letter-box.html") Emay Walter
@@ -151,7 +151,7 @@
               li
                 .d-flex.align-items-start
                   .message-img.bg-light-primary
-                    img(src="../assets/images/user/6.jpg" alt="")
+                    img(src="/assets/images/user/6.jpg" alt="")
                   .flex-grow-1
                     h5 
                       a(href="letter-box.html") Jason Borne
@@ -161,7 +161,7 @@
               li
                 .d-flex.align-items-start 
                   .message-img.bg-light-primary
-                    img(src="../assets/images/user/10.jpg" alt="")
+                    img(src="/assets/images/user/10.jpg" alt="")
                   .flex-grow-1
                     h5 
                       a(href="letter-box.html") Sarah Loren
@@ -173,13 +173,13 @@
         li.cart-nav.onhover-dropdown
           .cart-box 
             svg
-              use(href='../assets/svg/icon-sprite.svg#Buy')
+              use(href='/assets/svg/icon-sprite.svg#Buy')
           .cart-dropdown.onhover-show-div
             h6.f-18.mb-0.dropdown-title Cart
             ul
               li
                 .d-flex
-                  img.img-fluid.b-r-5.img-50(src='../assets/images/ecommerce/05.jpg', alt='')
+                  img.img-fluid.b-r-5.img-50(src='/assets/images/ecommerce/05.jpg', alt='')
                   .flex-grow-1 
                     span Women's Track Suit
                     h6.font-primary 8 x $65.00
@@ -188,7 +188,7 @@
                       i(data-feather='x')
               li
                 .d-flex
-                  img.img-fluid.b-r-5.img-50(src='../assets/images/ecommerce/02.jpg', alt='')
+                  img.img-fluid.b-r-5.img-50(src='/assets/images/ecommerce/02.jpg', alt='')
                   .flex-grow-1
                     span Men's Jacket
                     h6.font-primary 10 x $50.00
@@ -207,9 +207,9 @@
         li
           .mode
             svg.for-dark
-              use(href='../assets/svg/icon-sprite.svg#moon')
+              use(href='/assets/svg/icon-sprite.svg#moon')
             svg.for-light
-              use(href='../assets/svg/icon-sprite.svg#Sun')
+              use(href='/assets/svg/icon-sprite.svg#Sun')
         li.language-nav
           .translate_wrapper
             .current_lang
@@ -246,12 +246,12 @@
                   span  (ae)
         li.profile-nav.onhover-dropdown.pe-0.py-0
           .d-flex.align-items-center.profile-media
-            img.b-r-25(src='../assets/images/dashboard/profile.png', alt='')
+            img.b-r-25(src='/assets/images/dashboard/profile.png', alt='')
             .flex-grow-1.user
               span Helen Walter
               p.mb-0.font-nunito Admin 
                 svg
-                  use(href='../assets/svg/icon-sprite.svg#header-arrow-down')
+                  use(href='/assets/svg/icon-sprite.svg#header-arrow-down')
           ul.profile-dropdown.onhover-show-div
             li
               a(href='user-profile.html')

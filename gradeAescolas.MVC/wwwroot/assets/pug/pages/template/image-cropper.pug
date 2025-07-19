@@ -25,7 +25,7 @@ html(lang='en')
                     li.breadcrumb-item
                       a(href='index.html')
                         svg.stroke-icon
-                          use(href='../assets/svg/icon-sprite.svg#stroke-home')
+                          use(href='/assets/svg/icon-sprite.svg#stroke-home')
                     li.breadcrumb-item Bonus Ui
                     li.breadcrumb-item.active Image Cropper
           // Container-fluid starts
@@ -42,7 +42,7 @@ html(lang='en')
                       .row
                         .col-xl-9.col-md-12
                           .img-container
-                            img#image(src='../assets/images/other-images/bg-profile.png', alt='Picture')
+                            img#image(src='/assets/images/other-images/bg-profile.png', alt='Picture')
                         .col-xl-3.col-md-12
                           .docs-preview.clearfix
                             .img-preview.preview-md
@@ -304,7 +304,7 @@ html(lang='en')
                             | class through disabled zoom-in and zoom-out.
                         .card-body
                           .img-container
-                            img.crop-zoomable.img-fluid(src='../assets/images/other-images/img-cropper.jpg', alt='baby')
+                            img.crop-zoomable.img-fluid(src='/assets/images/other-images/img-cropper.jpg', alt='baby')
                     .col-md-6
                       .card
                         .card-header.card-no-border.pb-0
@@ -315,7 +315,7 @@ html(lang='en')
                             | class through cropped image in any directions.
                         .card-body
                           .img-container
-                            img.crop-auto.img-fluid(src='../assets/images/slider/9.jpg', alt='nature')
+                            img.crop-auto.img-fluid(src='/assets/images/slider/9.jpg', alt='nature')
                     .col-md-6
                       .card
                         .card-header.card-no-border.pb-0
@@ -326,7 +326,7 @@ html(lang='en')
                             | class through move disabled.
                         .card-body
                           .img-container
-                            img.crop-drag.img-fluid(src='../assets/images/other-images/sea.jpg', alt='nature')
+                            img.crop-drag.img-fluid(src='/assets/images/other-images/sea.jpg', alt='nature')
                     .col-md-6
                       .card
                         .card-header.card-no-border.pb-0
@@ -337,7 +337,7 @@ html(lang='en')
                             | class through minimum and maximum crop size defined.
                         .card-body
                           .img-container
-                            img.crop-min.img-fluid(src='../assets/images/slider/9.jpg', alt='nature')
+                            img.crop-min.img-fluid(src='/assets/images/slider/9.jpg', alt='nature')
           // Container-fluid Ends
         include ../../components/footer
     include ../../components/footer-files

@@ -1,7 +1,16 @@
+using gradeAescolas.MVC.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddHttpClient("GradeAescolasApi", c =>
+{
+    c.BaseAddress = new Uri(builder.Configuration["ServiceUri:gradeAescolasAPI"]);
+});
+
+builder.Services.AddScoped<IEmpresaService, EmpresaService>();
 
 var app = builder.Build();
 

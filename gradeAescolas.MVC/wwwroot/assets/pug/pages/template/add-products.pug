@@ -25,7 +25,7 @@ html(lang='en')
                     li.breadcrumb-item
                       a(href='index.html')
                         svg.stroke-icon
-                          use(href='../assets/svg/icon-sprite.svg#stroke-home')
+                          use(href='/assets/svg/icon-sprite.svg#stroke-home')
                     li.breadcrumb-item ECommerce
                     li.breadcrumb-item.active Add-product
             // Container-fluid starts
@@ -44,7 +44,7 @@ html(lang='en')
                                   .nav-rounded
                                     .product-icons
                                       svg.stroke-icon
-                                        use(href="../assets/svg/icon-sprite.svg#product-detail")
+                                        use(href="/assets/svg/icon-sprite.svg#product-detail")
                                   .product-tab-content
                                     h6 Add Product Details
                                     p Add Product name & details
@@ -53,7 +53,7 @@ html(lang='en')
                                   .nav-rounded
                                     .product-icons
                                       svg.stroke-icon
-                                        use(href="../assets/svg/icon-sprite.svg#product-gallery")
+                                        use(href="/assets/svg/icon-sprite.svg#product-gallery")
                                   .product-tab-content
                                     h6 Product gallery
                                     p thumbnail & Add Product Gallery
@@ -62,7 +62,7 @@ html(lang='en')
                                   .nav-rounded
                                     .product-icons
                                       svg.stroke-icon
-                                        use(href="../assets/svg/icon-sprite.svg#product-category")
+                                        use(href="/assets/svg/icon-sprite.svg#product-category")
                                   .product-tab-content
                                     h6 Product Categories
                                     p Add Product category, Status and Tags
@@ -71,7 +71,7 @@ html(lang='en')
                                   .nav-rounded
                                     .product-icons
                                       svg.stroke-icon
-                                        use(href="../assets/svg/icon-sprite.svg#pricing") 
+                                        use(href="/assets/svg/icon-sprite.svg#pricing") 
                                   .product-tab-content
                                     h6 Selling prices
                                     p Add Product basic price & Discount
@@ -80,7 +80,7 @@ html(lang='en')
                                   .nav-rounded
                                     .product-icons
                                       svg.stroke-icon
-                                        use(href="../assets/svg/icon-sprite.svg#advance") 
+                                        use(href="/assets/svg/icon-sprite.svg#advance") 
                                   .product-tab-content
                                     h6 Advance
                                     p Add Meta details & Inventory details
@@ -124,7 +124,7 @@ html(lang='en')
                                     .d-flex.align-items-center.gap-sm-2.gap-1
                                         | Next
                                         svg
-                                          use(href="../assets/svg/icon-sprite.svg#front-arrow")   
+                                          use(href="/assets/svg/icon-sprite.svg#front-arrow")   
                             #gallery-product.tab-pane.fade(role='tabpanel' aria-labelledby='gallery-product-tab')
                               .sidebar-body
                                 .product-upload
@@ -132,7 +132,7 @@ html(lang='en')
                                   form#multiFileUploadA.dropzone.dropzone-light(action='/upload.php')
                                     .dz-message.needsclick
                                       svg
-                                        use(href="../assets/svg/icon-sprite.svg#file-upload")
+                                        use(href="/assets/svg/icon-sprite.svg#file-upload")
                                       h6 Drag your image here, or 
                                         a.txt-primary(href="#!") browser
                                       span.note.needsclick
@@ -142,7 +142,7 @@ html(lang='en')
                                   form#multiFileUploadB.dropzone.dropzone-light(action='/upload.php')
                                     .dz-message.needsclick
                                       svg
-                                        use(href="../assets/svg/icon-sprite.svg#file-upload1")
+                                        use(href="/assets/svg/icon-sprite.svg#file-upload1")
                                       h6 Drag files here
                                       span.note.needsclick
                                         | Add Product Gallery Images
@@ -150,13 +150,13 @@ html(lang='en')
                                   .btn
                                     .d-flex.align-items-center.gap-sm-2.gap-1
                                       svg
-                                        use(href="../assets/svg/icon-sprite.svg#back-arrow")
+                                        use(href="/assets/svg/icon-sprite.svg#back-arrow")
                                       | Previous
                                   .btn
                                     .d-flex.align-items-center.gap-sm-2.gap-1
                                         | Next
                                         svg
-                                          use(href="../assets/svg/icon-sprite.svg#front-arrow")      
+                                          use(href="/assets/svg/icon-sprite.svg#front-arrow")      
                             #category-product.tab-pane.fade(role='tabpanel' aria-labelledby='category-product-tab')
                               .sidebar-body
                                 form
@@ -245,13 +245,13 @@ html(lang='en')
                                     .btn
                                       .d-flex.align-items-center.gap-sm-2.gap-1
                                         svg
-                                          use(href="../assets/svg/icon-sprite.svg#back-arrow")
+                                          use(href="/assets/svg/icon-sprite.svg#back-arrow")
                                         | Previous
                                     .btn
                                       .d-flex.align-items-center.gap-sm-2.gap-1
                                           | Next
                                           svg
-                                            use(href="../assets/svg/icon-sprite.svg#front-arrow")
+                                            use(href="/assets/svg/icon-sprite.svg#front-arrow")
                             #pricings.tab-pane.fade(role='tabpanel' aria-labelledby='pricings-tab')
                               .sidebar-body
                                 form.price-wrapper
@@ -306,13 +306,13 @@ html(lang='en')
                                       .btn
                                         .d-flex.align-items-center.gap-sm-2.gap-1
                                           svg
-                                            use(href="../assets/svg/icon-sprite.svg#back-arrow")
+                                            use(href="/assets/svg/icon-sprite.svg#back-arrow")
                                           | Previous
                                       .btn
                                         .d-flex.align-items-center.gap-sm-2.gap-1
                                             | Next
                                             svg
-                                              use(href="../assets/svg/icon-sprite.svg#front-arrow")    
+                                              use(href="/assets/svg/icon-sprite.svg#front-arrow")    
                             #advance-product.tab-pane.fade(role='tabpanel' aria-labelledby='advance-product-tab')
                               .sidebar-body.advance-options
                                 ul#advance-option-tab.nav.nav-tabs.border-tab.mb-0(role='tablist')
@@ -372,13 +372,13 @@ html(lang='en')
                                             .btn
                                               .d-flex.align-items-center.gap-sm-2.gap-1
                                                 svg
-                                                  use(href="../assets/svg/icon-sprite.svg#back-arrow")
+                                                  use(href="/assets/svg/icon-sprite.svg#back-arrow")
                                                 | Previous
                                             .btn
                                               .d-flex.align-items-center.gap-sm-2.gap-1
                                                   | Next
                                                   svg
-                                                    use(href="../assets/svg/icon-sprite.svg#front-arrow")
+                                                    use(href="/assets/svg/icon-sprite.svg#front-arrow")
                                   #additional-option.tab-pane.fade(role='tabpanel' aria-labelledby='additional-option-tab')
                                     .meta-body
                                       form
@@ -425,13 +425,13 @@ html(lang='en')
                                             .btn
                                               .d-flex.align-items-center.gap-sm-2.gap-1
                                                 svg
-                                                  use(href="../assets/svg/icon-sprite.svg#back-arrow")
+                                                  use(href="/assets/svg/icon-sprite.svg#back-arrow")
                                                 | Previous
                                             .btn
                                               .d-flex.align-items-center.gap-sm-2.gap-1
                                                   | Next
                                                   svg
-                                                    use(href="../assets/svg/icon-sprite.svg#front-arrow")
+                                                    use(href="/assets/svg/icon-sprite.svg#front-arrow")
                                   #dropping-option.tab-pane.fade(role='tabpanel' aria-labelledby='dropping-option-tab')
                                     .meta-body
                                       form
@@ -489,13 +489,13 @@ html(lang='en')
                                             .btn
                                               .d-flex.align-items-center.gap-sm-2.gap-1
                                                 svg
-                                                  use(href="../assets/svg/icon-sprite.svg#back-arrow")
+                                                  use(href="/assets/svg/icon-sprite.svg#back-arrow")
                                                 | Previous 
                                             .btn
                                               .d-flex.align-items-center.gap-sm-2.gap-1
                                                   | Submit
                                                   svg
-                                                    use(href="../assets/svg/icon-sprite.svg#front-arrow")
+                                                    use(href="/assets/svg/icon-sprite.svg#front-arrow")
             // Container-fluid Ends
         include ../../components/footer
     include ../../components/footer-files

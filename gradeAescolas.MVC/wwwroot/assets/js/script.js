@@ -207,7 +207,7 @@
     $(".chat-menu").toggleClass("show");
   });
   // Language
-  var tnum = "en";
+  var tnum = "pt";
   $(document).ready(function () {
     if (localStorage.getItem("primary") != null) {
       var primary_val = localStorage.getItem("primary");
@@ -248,8 +248,9 @@
     $(".lan-7").text(trans[6][tnum]);
     $(".lan-8").text(trans[7][tnum]);
     $(".lan-9").text(trans[8][tnum]);
+    $(".lan-10").text(trans[9][tnum]);
   }
-  var trans = [
+    var trans = [
     {
       en: "General",
       pt: "Geral",
@@ -261,7 +262,7 @@
     },
     {
       en: "Dashboards,widgets & layout.",
-      pt: "PainÃ©is, widgets e layout.",
+      pt: "Dashboards, widgets e layout.",
       es: "Paneloj, fenestraÄµoj kaj aranÄo.",
       fr: "Tableaux de bord, widgets et mise en page.",
       de: "Dashboards, widgets en lay-out.",
@@ -270,7 +271,7 @@
     },
     {
       en: "Dashboards",
-      pt: "PainÃ©is",
+      pt: "Dashboards",
       es: "Paneloj",
       fr: "Tableaux",
       de: "Dashboards",
@@ -279,7 +280,7 @@
     },
     {
       en: "Default",
-      pt: "PadrÃ£o", 
+      pt: "Padrão", 
       es: "Vaikimisi",
       fr: "DÃ©faut", 
       de: "Standaard",
@@ -288,7 +289,7 @@
     },
     {
       en: "Ecommerce",
-      pt: "ComÃ©rcio eletrÃ´nico",
+      pt: "Comércio Eletrônico",
       es: "Komerco",
       fr: "Commerce Ã©lectronique",
       de: "E-commerce",
@@ -297,7 +298,7 @@
     },
     {
       en: "Widgets",
-      pt: "Ferramenta",
+      pt: "Ferramentas",
       es: "Vidin",
       fr: "Widgets",
       de: "Widgets",
@@ -306,7 +307,7 @@
     },
     {
       en: "Page layout",
-      pt: "Layout da pÃ¡gina",
+      pt: "Layout da página",
       es: "PaÄa aranÄo",
       fr: "Tableaux",
       de: "Mise en page",
@@ -315,7 +316,7 @@
     },
     {
       en: "Applications",
-      pt: "FormulÃ¡rios",
+      pt: "Formulários",
       es: "Aplikoj",
       fr: "Applications",
       de: "Toepassingen",
@@ -324,12 +325,21 @@
     },
     {
       en: "Ready to use Apps",
-      pt: "Pronto para usar aplicativos",
+      pt: "Apps prontos para usar",
       es: "Preta uzi Apps",
       fr: " Applications prÃªtes Ã  lemploi ",
       de: "Klaar om apps te gebruiken",
       cn: "ä»ªè¡¨æ¿",
       ae: "Ø¬Ø§Ù‡Ø² Ù„Ø§Ø³ØªØ®Ø¯Ø§Ù… Ø§Ù„ØªØ·Ø¨ÙŠÙ‚Ø§Øª",
+        },
+    {
+        en: "Administration Office",
+        pt: "Secretaria",
+        es: "Secretaría",
+        fr: "Secrétariat",
+        de: "Sekretariat",
+        cn: "校务处",
+        ae: "الإدارة المدرسية",
     },
   ];
   $(".mobile-title svg").click(function () {
