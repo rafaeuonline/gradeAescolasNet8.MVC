@@ -27,12 +27,12 @@ public class EmpresasController : Controller
 
     //Criar nova empresa, Get para a view, e Post para atualizar Início
     [HttpGet]
-    public ActionResult CriarNovaEmnpresa()
+    public ActionResult CriarNovaEmpresa()
     {
         return View();
     }
     [HttpPost]
-    public async Task<ActionResult<EmpresaViewModel>> CriarNovaEmnpresa(EmpresaViewModel empresaVM)
+    public async Task<ActionResult<EmpresaViewModel>> CriarNovaEmpresa(EmpresaViewModel empresaVM)
     {
         if (ModelState.IsValid)
         {
