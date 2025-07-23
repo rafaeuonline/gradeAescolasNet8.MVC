@@ -3,6 +3,28 @@
 }
 
 <div class="text-center">
+
+    @if (TempData["Mensagem"] != null)
+    {
+        <div class="alert alert-info">
+            @TempData["Mensagem"]
+        </div>
+    }
+
+    <p>Access Token: @Context.Session.GetString("AccessToken")</p>
+    <p>UserName: @Context.Session.GetString("UserName")</p>
+    <p>Email: @Context.Session.GetString("UserEmail")</p>
+    <p>UsuarioId: @Context.Session.GetString("UsuarioId")</p>
+    <p>EmpresaId: @Context.Session.GetString("EmpresaId")</p>
+    <p>PessoaId: @Context.Session.GetString("PessoaId")</p>
+    <p>Role: @Context.Session.GetString("Role")</p>
+    <p>TokenExpiration: @Context.Session.GetString("TokenExpiration")</p>
+
+    <br /><BR />
+    <p>Data e Hora: @DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")</p>
+    <p>Versão: @System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString()</p>
+    <p>Copyright © 2025 - Todos os direitos reservados.</p>
+
     <h1 class="display-4"><BR />GradeA Escolas ;)</h1>
     <p><BR />Sistema para Gestão Escolar<BR />Powered By <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>

@@ -5,23 +5,23 @@ using System.Text.Json;
 
 namespace gradeAescolas.MVC.Services;
 
-public class EmpresaService : IEmpresaService
+public class PessoaService : IPessoaService
 {
-    private const string apiEndpoint = "/v1/empresas/";
+    private const string apiEndpoint = "/v1/pessoas/";
 
     private readonly JsonSerializerOptions _options;
     private readonly IHttpClientFactory _clientFactory;
 
-    private EmpresaViewModel empresaVM;
-    private IEnumerable<EmpresaViewModel> empresasVM;
+    private PessoaViewModel pessoaVM;
+    private IEnumerable<PessoaViewModel> pessoasVM;
 
-    public EmpresaService(IHttpClientFactory clientFactory)
+    public PessoaService(IHttpClientFactory clientFactory)
     {
-        _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true};
+        _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
         _clientFactory = clientFactory;
     }
 
-    public async Task<IEnumerable<EmpresaViewModel>> GetEmpresasAsync(string token)
+    public async Task<IEnumerable<PessoaViewModel>> GetPessoasAsync(string token)
     {
         var client = _clientFactory.CreateClient("GradeAescolasApi");
         PutTokenInHeaderAuthorization(client, token);
@@ -31,21 +31,19 @@ public class EmpresaService : IEmpresaService
             if (response.IsSuccessStatusCode)
             {
                 var apiResponse = await response.Content.ReadAsStreamAsync();
-                empresasVM = await JsonSerializer
-                                .DeserializeAsync<IEnumerable<EmpresaViewModel>>
+                pessoasVM = await JsonSerializer
+                                .DeserializeAsync<IEnumerable<PessoaViewModel>>
                                 (apiResponse, _options);
             }
             else
             {
-                // Handle error response
-                //return Enumerable.Empty<EmpresaViewModel>();
-                return null;
+                return null; // Handle error response
             }
         }
-        return empresasVM;
+        return pessoasVM;
     }
 
-    public async Task<EmpresaViewModel> GetEmpresaByIdAsync(int id, string token)
+    public async Task<PessoaViewModel> GetPessoaByIdAsync(int id, string token)
     {
         var client = _clientFactory.CreateClient("GradeAescolasApi");
         PutTokenInHeaderAuthorization(client, token);
@@ -55,48 +53,48 @@ public class EmpresaService : IEmpresaService
             if (response.IsSuccessStatusCode)
             {
                 var apiResponse = await response.Content.ReadAsStreamAsync();
-                empresaVM = await JsonSerializer
-                                .DeserializeAsync<EmpresaViewModel>(apiResponse, _options);
+                pessoaVM = await JsonSerializer
+                                .DeserializeAsync<PessoaViewModel>(apiResponse, _options);
             }
             else
             {
-                return null;
+                return null; // Handle error response
             }
         }
-        return empresaVM;
+        return pessoaVM;
     }
 
-    public async Task<EmpresaViewModel> CreateEmpresaAsync(EmpresaViewModel empresaVM, string token)
+    public async Task<PessoaViewModel> CreatePessoaAsync(PessoaViewModel pessoaVM, string token)
     {
         var client = _clientFactory.CreateClient("GradeAescolasApi");
         PutTokenInHeaderAuthorization(client, token);
 
-        var empresa = JsonSerializer.Serialize(empresaVM);
-        StringContent content = new StringContent(empresa, Encoding.UTF8, "application/json");
+        var pessoa = JsonSerializer.Serialize(pessoaVM);
+        StringContent content = new StringContent(pessoa, Encoding.UTF8, "application/json");
 
         using (var response = await client.PostAsync(apiEndpoint, content))
         {
             if (response.IsSuccessStatusCode)
             {
                 var apiResponse = await response.Content.ReadAsStreamAsync();
-                empresaVM = await JsonSerializer
-                                .DeserializeAsync<EmpresaViewModel>(apiResponse, _options);
+                pessoaVM = await JsonSerializer
+                                .DeserializeAsync<PessoaViewModel>
+                                (apiResponse, _options);
             }
             else
             {
-                // Handle error response
-                return null;
+                return null; // Handle error response
             }
         }
-        return empresaVM;
+        return pessoaVM;
     }
 
-    public async Task<bool> UpdateEmpresaAsync(int id, EmpresaViewModel empresaVM, string token)
+    public async Task<bool> UpdatePessoaAsync(int id, PessoaViewModel pessoaVM, string token)
     {
         var client = _clientFactory.CreateClient("GradeAescolasApi");
         PutTokenInHeaderAuthorization(client, token);
 
-        using (var response = await client.PutAsJsonAsync(apiEndpoint + id, empresaVM))
+        using (var response = await client.PutAsJsonAsync(apiEndpoint + id, pessoaVM))
         {
             if (response.IsSuccessStatusCode)
             {
@@ -104,12 +102,12 @@ public class EmpresaService : IEmpresaService
             }
             else
             {
-                return false;
+                return false; // Handle error response
             }
         }
     }
 
-    public async Task<bool> DeleteEmpresaAsync(int id, string token)
+    public async Task<bool> DeletePessoaAsync(int id, string token)
     {
         var client = _clientFactory.CreateClient("GradeAescolasApi");
         PutTokenInHeaderAuthorization(client, token);
@@ -122,12 +120,27 @@ public class EmpresaService : IEmpresaService
             }
             else
             {
-                return false;
+                return false; // Handle error response
             }
         }
     }
 
-    public async Task<(IEnumerable<EmpresaViewModel> empresas, int totalCount)> GetEmpresasPaginacaoAsync(int page, int pageSize, string? search, string token)
+    public async Task<PessoaViewModel> GetPessoaByEmpresaIdAndPessoaId(int empresaId, int pessoaId, string token)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<(IEnumerable<PessoaViewModel> Result, int TotalCount)> GetPessoasAsyncPagFiltro(int page, int pageSize, string? nome, string token)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<IEnumerable<PessoaViewModel>> GetPessoasByEmpresaIdAsync(int empresaId, string token)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<(IEnumerable<PessoaViewModel> Result, int TotalCount)> GetPessoasByEmpresaIdAsyncPagFiltro(int empresaId, int page, int pageSize, string? nome, string token)
     {
         throw new NotImplementedException();
     }
@@ -136,5 +149,4 @@ public class EmpresaService : IEmpresaService
     {
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
     }
-
 }

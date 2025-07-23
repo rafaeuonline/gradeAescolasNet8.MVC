@@ -3,40 +3,36 @@
 <div class="col-xl-6">
     <div class="card height-equal">
         <div class="card-header pb-0">
-            <h4>Cadastro de Nova Empresa</h4>
+            <h4>Atualizar Empresa</h4>
             <p class="f-m-light mt-1">
-                Insira as informações abaixo para criar uma Nova Empresa.
+                Alterar as informações abaixo para alterar a Empresa.
             </p>
         </div>
-        <div class="card-body custom-input"  asp-validation-summary="All" >
-            <form class="row g-3" asp-action="CriarNovaEmpresa">
+        <div class="card-body custom-input" asp-validation-summary="All">
+            <form class="row g-3" asp-action="AtualizarEmpresa">
+                <input type="hidden" asp-for="EmpresaId" />
                 <div class="col-12">
                     <label asp-for="NomeFantasia" class="form-label"></label>
                     <input asp-for="NomeFantasia" class="form-control" type="text" placeholder="Insira o Nome Fantasia" required>
-                    <span asp-validation-for="NomeFantasia" class="text-danger"></span>
                 </div>
                 <div class="col-12">
                     <label asp-for="RazaoSocial" class="form-label"></label>
                     <input asp-for="RazaoSocial" class="form-control" type="text" placeholder="Insira a Razão Social" required>
-                    <span asp-validation-for="RazaoSocial" class="text-danger"></span>
                 </div>
                 <div class="col-12">
                     <label asp-for="CNPJFormatado" class="form-label"></label>
                     <input asp-for="CNPJFormatado" class="form-control" type="text" placeholder="Insira o CNPJ" required>
-                    <span asp-validation-for="CNPJFormatado" class="text-danger"></span>
                 </div>
                 <div class="col-12">
                     <label asp-for="Email" class="form-label"></label>
                     <input asp-for="Email" class="form-control" type="text" placeholder="Insira o E-mail" required>
-                    <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="col-12">
                     <label asp-for="TelefoneFormatado" class="form-label"></label>
                     <input asp-for="TelefoneFormatado" class="form-control" type="text" placeholder="Insira o Telefone" required>
-                    <span asp-validation-for="TelefoneFormatado" class="text-danger"></span>
                 </div>
                 <div class="col-12">
-                    <input class="btn btn-primary me-3" type="submit" value="Criar">
+                    <input class="btn btn-primary" type="submit" value="Salvar">
                     <a asp-action="Index" class="btn btn-light">Retornar</a>
                 </div>
                 @if (ViewBag.Erro != null)
