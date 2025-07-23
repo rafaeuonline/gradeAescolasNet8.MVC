@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text.Json;
 
 namespace gradeAescolas.MVC.Controllers;
 
@@ -57,10 +58,10 @@ public class AccountController : Controller
         var jwtToken = TokenHelper.ReadToken(result.AccessToken);
 
         // DEBUG: Mostra todas as claims no console (ou no Output do Visual Studio)
-        foreach (var claim in jwtToken.Claims)
-        {
-            Console.WriteLine($"CLAIM TYPE: {claim.Type} - VALUE: {claim.Value}");
-        }
+        //foreach (var claim in jwtToken.Claims)
+        //{
+        //    Console.WriteLine($"CLAIM TYPE: {claim.Type} - VALUE: {claim.Value}");
+        //}
 
         // Armazena token e claims na sessão
         HttpContext.Session.SetString("AccessToken", result.AccessToken);
@@ -70,6 +71,7 @@ public class AccountController : Controller
         HttpContext.Session.SetString("EmpresaId", TokenHelper.GetClaim(jwtToken, "EmpresaId") ?? "");
         HttpContext.Session.SetString("PessoaId", TokenHelper.GetClaim(jwtToken, "PessoaId") ?? "");
         HttpContext.Session.SetString("Role", TokenHelper.GetClaim(jwtToken, ClaimTypes.Role) ?? "");
+        HttpContext.Session.SetString("Roles", JsonSerializer.Serialize(TokenHelper.GetClaims(jwtToken, ClaimTypes.Role)) ?? "");
         HttpContext.Session.SetString("TokenExpiration", result.Expiration.ToString("o"));
 
         // Armazena o token no cookie (HttpOnly, Secure)

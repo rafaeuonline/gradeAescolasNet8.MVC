@@ -10,7 +10,8 @@ public interface IPessoaService
     Task<(IEnumerable<PessoaViewModel> Result, int TotalCount)> GetPessoasByEmpresaIdAsyncPagFiltro(int empresaId, int page, int pageSize, string? nome, string token);
     Task<PessoaViewModel> GetPessoaByEmpresaIdAndPessoaId(int empresaId, int pessoaId, string token);
     Task<PessoaViewModel> GetPessoaByIdAsync(int id, string token);
-    Task<PessoaViewModel> CreatePessoaAsync(PessoaViewModel pessoaVM, string token);
+    //Task<PessoaViewModel> CreatePessoaAsync(PessoaViewModel pessoaVM, string token);
+    Task<PessoaUsuarioViewModel> CreatePessoaAsync(PessoaUsuarioViewModel pessoaUsuarioVM, string token);
     Task<bool> UpdatePessoaAsync(int id, PessoaViewModel pessoaVM, string token);
     Task<bool> DeletePessoaAsync(int id, string token);
 }

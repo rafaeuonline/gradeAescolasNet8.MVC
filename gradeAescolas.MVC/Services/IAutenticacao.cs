@@ -5,6 +5,8 @@ namespace gradeAescolas.MVC.Services;
 public interface IAutenticacao
 {
     Task<TokenViewModel> AutenticaUsuario(UsuarioViewModel usuarioVM);
+    Task<bool> RegistrarUsuarioAsync(PessoaUsuarioViewModel pessoaUsuarioVM, string token);
+    Task<bool> AdicionarUsuarioRoleAsync(string userName, string roleName, string token);
     //Task<TokenViewModel> Login(UsuarioViewModel usuarioViewModel);
     //Task Logout();
     //Task<bool> EstaAutenticado();

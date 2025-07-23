@@ -1,0 +1,70 @@
+﻿@model PessoaViewModel
+<div class="col-xl-6">
+    <div class="card height-equal">
+        <div class="card-header pb-0">
+            <h4>Excluir Pessoa</h4>
+            <p class="f-m-light mt-1">
+                Confirma a exclusão da Pessoa <b>@(Model.Nome + " " + Model.Sobrenome) - Id:@(Model.PessoaId)</b>?
+            </p>
+        </div>
+        <div class="card-body custom-input" asp-validation-summary="All">
+            @* <form class="row g-3" asp-action="AtualizarPessoa" asp-route-id="@Model.PessoaId" method="get"> *@
+                <div class="col-12">
+                    <label asp-for="Nome" class="form-label"></label>
+                    <input asp-for="Nome" class="form-control" type="text" placeholder="Insira o Nome" disabled="disabled" required>
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Sobrenome" class="form-label"></label>
+                    <input asp-for="Sobrenome" class="form-control" type="text" placeholder="Insira o Sobrenome" disabled="disabled" required>
+                    <span asp-validation-for="Sobrenome" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="CPFFormatado" class="form-label"></label>
+                    <input asp-for="CPFFormatado" class="form-control" type="text" placeholder="Insira o CPF" disabled="disabled" required>
+                    <span asp-validation-for="CPFFormatado" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="DataNascimento" class="form-label"></label>
+                    <input asp-for="DataNascimento" class="form-control" type="date" placeholder="Insira a Data de Nascimento" disabled="disabled" required>
+                    <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" type="text" placeholder="Insira o E-mail" disabled="disabled" required>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Telefone1Formatado" class="form-label"></label>
+                    <input asp-for="Telefone1Formatado" class="form-control" type="text" placeholder="Insira o Telefone Principal" disabled="disabled" required>
+                    <span asp-validation-for="Telefone1Formatado" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Telefone2Formatado" class="form-label"></label>
+                    <input asp-for="Telefone2Formatado" class="form-control" type="text" placeholder="Insira outro Telefone (Opcional)" disabled="disabled">
+                    <span asp-validation-for="Telefone2Formatado" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="EmpresaId" class="form-label"></label>
+                    <input asp-for="EmpresaId" class="form-control" type="text" placeholder="EmpresaId" disabled="disabled">
+                    <span asp-validation-for="EmpresaId" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <form class="row g-3" asp-action="DeletarPessoa">
+                        <input type="hidden" asp-for="PessoaId" />
+                        <div class="col-12">
+                            <input class="btn btn-danger" type="submit" value="Deletar">
+                            <a asp-action="Index" class="btn btn-light">Retornar</a>
+                        </div>
+                    </form>
+                </div>
+                @if (ViewBag.Erro != null)
+                {
+                    <div class="alert alert-danger">
+                        <h4 class="alert-heading">@ViewBag.Erro</h4>
+                    </div>
+                }
+            @* </form> *@
+        </div>
+    </div>
+</div>

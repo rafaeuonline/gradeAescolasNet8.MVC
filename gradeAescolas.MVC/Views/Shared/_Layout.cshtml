@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Http
+@using System.Globalization
 @inject IHttpContextAccessor HttpContextAccessor
 
 @{
@@ -108,14 +109,47 @@
                       @* <h3>Default Dashboard</h3> *@
                                     @{
                                         var nomeUsuario = Context.Session.GetString("UserName");
+                                        var nomeFormatado = !string.IsNullOrEmpty(nomeUsuario)
+                                        ? CultureInfo.CurrentCulture.TextInfo.ToTitleCase(nomeUsuario.ToLower())
+                                        : "Usuário";
+
                                         var role = Context.Session.GetString("Role");
                                         var empresaId = Context.Session.GetString("EmpresaId");
+
+                                        var pessoaId = @Context.Session.GetString("PessoaId");
+                                        //var tokenExpiration = @DateTime.Parse(Context.Session.GetString("TokenExpiration"));
+                                        
+                                        var expirationString = Context.Session.GetString("TokenExpiration");
+                                        DateTime? tokenExpiration = null;
+
+                                        if (!string.IsNullOrEmpty(expirationString) && DateTime.TryParse(expirationString, out var parsedDate))
+                                        {
+                                            tokenExpiration = parsedDate;
+
+                                            var tokenExpirationFormatado = tokenExpiration.Value.ToString("dd/MM/yyyy HH:mm:ss");
+                                        }
+                                        
+                                        
                                     }
+                                    @{
+                                        var rolesJson = Context.Session.GetString("Roles");
+                                        List<string> roles = new();
+
+                                        if (!string.IsNullOrEmpty(rolesJson))
+                                        {
+                                            roles = System.Text.Json.JsonSerializer.Deserialize<List<string>>(rolesJson);
+                                        }
+                                    }
+
 
                                     @if (!string.IsNullOrEmpty(nomeUsuario))
                                     {
                                        // <div class="text-end me-3 p-2">
-                                            <span class="text-muted">Bem-vindo, <strong>@nomeUsuario</strong> (Role: @role, Empresa: @empresaId)</span>
+                                        <span class="text-muted">Bem-vindo, <strong>@nomeFormatado</strong>
+                                            | PId: @pessoaId/EId: @empresaId
+                                            | Role(s): @string.Join(", ", roles)
+                                            <BR />Sua sessão expira em: @tokenExpiration
+                                        </span>
                                         //</div>
                                     }
 

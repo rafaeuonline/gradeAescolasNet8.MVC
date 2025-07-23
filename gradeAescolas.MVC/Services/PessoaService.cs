@@ -15,6 +15,9 @@ public class PessoaService : IPessoaService
     private PessoaViewModel pessoaVM;
     private IEnumerable<PessoaViewModel> pessoasVM;
 
+    private PessoaUsuarioViewModel pessoaUsuarioVM;
+    private IEnumerable<PessoaUsuarioViewModel> pessoasUsuarioVM;
+
     public PessoaService(IHttpClientFactory clientFactory)
     {
         _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
@@ -64,12 +67,12 @@ public class PessoaService : IPessoaService
         return pessoaVM;
     }
 
-    public async Task<PessoaViewModel> CreatePessoaAsync(PessoaViewModel pessoaVM, string token)
+    public async Task<PessoaUsuarioViewModel> CreatePessoaAsync(PessoaUsuarioViewModel pessoaUsuarioVM, string token)
     {
         var client = _clientFactory.CreateClient("GradeAescolasApi");
         PutTokenInHeaderAuthorization(client, token);
 
-        var pessoa = JsonSerializer.Serialize(pessoaVM);
+        var pessoa = JsonSerializer.Serialize(pessoaUsuarioVM.Pessoa);
         StringContent content = new StringContent(pessoa, Encoding.UTF8, "application/json");
 
         using (var response = await client.PostAsync(apiEndpoint, content))
@@ -77,7 +80,7 @@ public class PessoaService : IPessoaService
             if (response.IsSuccessStatusCode)
             {
                 var apiResponse = await response.Content.ReadAsStreamAsync();
-                pessoaVM = await JsonSerializer
+                pessoaUsuarioVM.Pessoa = await JsonSerializer
                                 .DeserializeAsync<PessoaViewModel>
                                 (apiResponse, _options);
             }
@@ -86,7 +89,7 @@ public class PessoaService : IPessoaService
                 return null; // Handle error response
             }
         }
-        return pessoaVM;
+        return pessoaUsuarioVM;
     }
 
     public async Task<bool> UpdatePessoaAsync(int id, PessoaViewModel pessoaVM, string token)

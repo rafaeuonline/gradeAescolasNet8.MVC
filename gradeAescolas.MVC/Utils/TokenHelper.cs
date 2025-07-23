@@ -35,4 +35,35 @@ public static class TokenHelper
 
         return claim;
     }
+
+    public static List<string> GetClaims(JwtSecurityToken token, string claimType)
+    {
+        var fallbackClaims = new Dictionary<string, string[]>
+    {
+        { ClaimTypes.Name, new[] { "name", "unique_name", "preferred_username", "sub" } },
+        { ClaimTypes.NameIdentifier, new[] { "nameid", "sub" } },
+        { ClaimTypes.Email, new[] { "email" } },
+        { ClaimTypes.Role, new[] { "role" } }
+    };
+
+        var claims = token.Claims
+                          .Where(c => c.Type == claimType)
+                          .Select(c => c.Value)
+                          .ToList();
+
+        if (!claims.Any() && fallbackClaims.TryGetValue(claimType, out var aliases))
+        {
+            foreach (var alt in aliases)
+            {
+                claims = token.Claims
+                              .Where(c => c.Type == alt)
+                              .Select(c => c.Value)
+                              .ToList();
+
+                if (claims.Any()) break;
+            }
+        }
+
+        return claims;
+    }
 }
