@@ -3,7 +3,6 @@ using gradeAescolas.MVC.Services;
 using gradeAescolas.MVC.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text.Json;
 
@@ -19,7 +18,7 @@ public class AccountController : Controller
         _autenticacaoService = autenticacaoService;
     }
 
-    // Login - primeiro Get para renderizara a página de login, depois post para postar os dados INICIO
+    // Login - primeiro Get para renderizar a página de login, depois post para postar os dados INICIO
     [HttpGet]
     [AllowAnonymous]
     public IActionResult Login()

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<gradeAescolas.MVC.Models.PessoaViewModel>
+﻿@model IEnumerable<PessoaViewModel>
 
 <!-- Pessoas Begin -->
 <div class="col-sm-12">
@@ -13,6 +13,12 @@
                         <span title="Criar Pessoa">Nova Pessoa</span>
                     </a>
                 </div>
+                @if (ViewBag.Message != null)
+                {
+                    <div class="alert alert-danger">
+                        <h4 class="alert-heading">@ViewBag.Message</h4>
+                    </div>
+                }
                 <table class="display" id="basic-1">
                     <thead>
                         <tr>
@@ -52,6 +58,7 @@
                         }
                     </tbody>
                 </table>
+                }
             </div>
         </div>
     </div>

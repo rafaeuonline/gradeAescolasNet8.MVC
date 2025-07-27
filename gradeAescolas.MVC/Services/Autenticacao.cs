@@ -62,6 +62,28 @@ public class Autenticacao : IAutenticacao
         return response.IsSuccessStatusCode;
     }
 
+    // Método para registrar um usuário professor
+    public async Task<bool> RegistrarUsuarioProfAsync(ProfessorViewModel professorVM, string token)
+    {
+        var client = _clientFactory.CreateClient("AutenticaApi");
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+        var novoUsuario = new
+        {
+            PessoaId = professorVM.PessoaId,
+            EmpresaId = professorVM.EmpresaId,
+            //Email = usuarioVM.Email,
+            UserName = professorVM.Usuario.UserName, // ou CPF
+            Password = professorVM.Usuario.Password // pode ser randomizada se quiser
+        };
+
+        var json = JsonSerializer.Serialize(novoUsuario);
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        var response = await client.PostAsync("register", content);
+        return response.IsSuccessStatusCode;
+    }
+
     public async Task<bool> AdicionarUsuarioRoleAsync(string userName, string roleName, string token)
     {
         var client = _clientFactory.CreateClient("AutenticaApi");
@@ -83,4 +105,5 @@ public class Autenticacao : IAutenticacao
 
         return response.IsSuccessStatusCode;
     }
+
 }

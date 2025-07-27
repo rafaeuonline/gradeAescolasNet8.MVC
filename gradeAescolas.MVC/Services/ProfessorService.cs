@@ -5,26 +5,23 @@ using System.Text.Json;
 
 namespace gradeAescolas.MVC.Services;
 
-public class PessoaService : IPessoaService
+public class ProfessorService : IProfessorService
 {
-    private const string apiEndpoint = "/v1/pessoas/";
+    private const string apiEndpoint = "/v1/professores/";
 
     private readonly JsonSerializerOptions _options;
     private readonly IHttpClientFactory _clientFactory;
 
-    private PessoaViewModel pessoaVM;
-    private IEnumerable<PessoaViewModel> pessoasVM;
+    private ProfessorViewModel professorVM;
+    private IEnumerable<ProfessorViewModel> professoresVM;
 
-    private PessoaUsuarioViewModel pessoaUsuarioVM;
-    private IEnumerable<PessoaUsuarioViewModel> pessoasUsuarioVM;
-
-    public PessoaService(IHttpClientFactory clientFactory)
+    public ProfessorService(IHttpClientFactory clientFactory)
     {
         _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
         _clientFactory = clientFactory;
     }
 
-    public async Task<IEnumerable<PessoaViewModel>> GetPessoasAsync(string token)
+    public async Task<IEnumerable<ProfessorViewModel>> GetProfessoresAsync(string token)
     {
         var client = _clientFactory.CreateClient("GradeAescolasApi");
         PutTokenInHeaderAuthorization(client, token);
@@ -34,8 +31,8 @@ public class PessoaService : IPessoaService
             if (response.IsSuccessStatusCode)
             {
                 var apiResponse = await response.Content.ReadAsStreamAsync();
-                pessoasVM = await JsonSerializer
-                                .DeserializeAsync<IEnumerable<PessoaViewModel>>
+                professoresVM = await JsonSerializer
+                                .DeserializeAsync<IEnumerable<ProfessorViewModel>>
                                 (apiResponse, _options);
             }
             else
@@ -43,10 +40,10 @@ public class PessoaService : IPessoaService
                 return null; // Handle error response
             }
         }
-        return pessoasVM;
+        return professoresVM;
     }
 
-    public async Task<PessoaViewModel> GetPessoaByIdAsync(int id, string token)
+    public async Task<ProfessorViewModel?> GetProfessorByIdAsync(int id, string token)
     {
         var client = _clientFactory.CreateClient("GradeAescolasApi");
         PutTokenInHeaderAuthorization(client, token);
@@ -56,32 +53,37 @@ public class PessoaService : IPessoaService
             if (response.IsSuccessStatusCode)
             {
                 var apiResponse = await response.Content.ReadAsStreamAsync();
-                pessoaVM = await JsonSerializer
-                                .DeserializeAsync<PessoaViewModel>(apiResponse, _options);
+                professorVM = await JsonSerializer
+                                .DeserializeAsync<ProfessorViewModel>(apiResponse, _options);
             }
             else
             {
                 return null; // Handle error response
             }
         }
-        return pessoaVM;
+        return professorVM;
     }
 
-    public async Task<PessoaUsuarioViewModel> CreatePessoaAsync(PessoaUsuarioViewModel pessoaUsuarioVM, string token)
+    public async Task<(IEnumerable<ProfessorViewModel> Result, int TotalCount)> GetProfessoresAsyncPagFiltro(int page, int pageSize, string? registro, string token)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<ProfessorViewModel> CreateProfessorAsync(ProfessorViewModel professorVM, string token)
     {
         var client = _clientFactory.CreateClient("GradeAescolasApi");
         PutTokenInHeaderAuthorization(client, token);
 
-        var pessoa = JsonSerializer.Serialize(pessoaUsuarioVM.Pessoa);
-        StringContent content = new StringContent(pessoa, Encoding.UTF8, "application/json");
+        var professor = JsonSerializer.Serialize(professorVM);
+        StringContent content = new StringContent(professor, Encoding.UTF8, "application/json");
 
         using (var response = await client.PostAsync(apiEndpoint, content))
         {
             if (response.IsSuccessStatusCode)
             {
                 var apiResponse = await response.Content.ReadAsStreamAsync();
-                pessoaUsuarioVM.Pessoa = await JsonSerializer
-                                .DeserializeAsync<PessoaViewModel>
+                professorVM = await JsonSerializer
+                                .DeserializeAsync<ProfessorViewModel>
                                 (apiResponse, _options);
             }
             else
@@ -89,39 +91,15 @@ public class PessoaService : IPessoaService
                 return null; // Handle error response
             }
         }
-        return pessoaUsuarioVM;
+        return professorVM;
     }
 
-    public async Task<PessoaViewModel> CreatePessoaProfAsync(PessoaViewModel pessoaVM, string token)
+    public async Task<bool> UpdateProfessorAsync(int id, ProfessorViewModel professorVM, string token)
     {
         var client = _clientFactory.CreateClient("GradeAescolasApi");
         PutTokenInHeaderAuthorization(client, token);
 
-        var pessoa = JsonSerializer.Serialize(pessoaVM);
-        StringContent content = new StringContent(pessoa, Encoding.UTF8, "application/json");
-
-        using (var response = await client.PostAsync(apiEndpoint, content))
-        {
-            if (response.IsSuccessStatusCode)
-            {
-                var apiResponse = await response.Content.ReadAsStreamAsync();
-                pessoaVM = await JsonSerializer
-                                .DeserializeAsync<PessoaViewModel>
-                                (apiResponse, _options);
-            }
-            else
-            {
-                return null; // Handle error response
-            }
-        }
-        return pessoaVM;
-    }
-    public async Task<bool> UpdatePessoaAsync(int id, PessoaViewModel pessoaVM, string token)
-    {
-        var client = _clientFactory.CreateClient("GradeAescolasApi");
-        PutTokenInHeaderAuthorization(client, token);
-
-        using (var response = await client.PutAsJsonAsync(apiEndpoint + id, pessoaVM))
+        using (var response = await client.PutAsJsonAsync(apiEndpoint + id, professorVM))
         {
             if (response.IsSuccessStatusCode)
             {
@@ -134,7 +112,7 @@ public class PessoaService : IPessoaService
         }
     }
 
-    public async Task<bool> DeletePessoaAsync(int id, string token)
+    public async Task<bool> DeleteProfessorAsync(int id, string token)
     {
         var client = _clientFactory.CreateClient("GradeAescolasApi");
         PutTokenInHeaderAuthorization(client, token);
@@ -152,22 +130,19 @@ public class PessoaService : IPessoaService
         }
     }
 
-    public async Task<PessoaViewModel> GetPessoaByEmpresaIdAndPessoaId(int empresaId, int pessoaId, string token)
+
+
+    public async Task<ProfessorViewModel?> GetProfessorByEmpresaIdAndProfessorId(int empresaId, int professorId, string token)
+    {
+        throw new NotImplementedException();
+    }  
+
+    public async Task<IEnumerable<ProfessorViewModel>> GetProfessoresByEmpresaIdAsync(int empresaId, string token)
     {
         throw new NotImplementedException();
     }
 
-    public async Task<(IEnumerable<PessoaViewModel> Result, int TotalCount)> GetPessoasAsyncPagFiltro(int page, int pageSize, string? nome, string token)
-    {
-        throw new NotImplementedException();
-    }
-
-    public async Task<IEnumerable<PessoaViewModel>> GetPessoasByEmpresaIdAsync(int empresaId, string token)
-    {
-        throw new NotImplementedException();
-    }
-
-    public async Task<(IEnumerable<PessoaViewModel> Result, int TotalCount)> GetPessoasByEmpresaIdAsyncPagFiltro(int empresaId, int page, int pageSize, string? nome, string token)
+    public async Task<(IEnumerable<ProfessorViewModel> Result, int TotalCount)> GetProfessoresByEmpresaIdAsyncPagFiltro(int empresaId, int page, int pageSize, string? registro, string token)
     {
         throw new NotImplementedException();
     }
@@ -176,5 +151,4 @@ public class PessoaService : IPessoaService
     {
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
     }
-
 }

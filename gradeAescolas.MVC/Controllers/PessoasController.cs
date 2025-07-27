@@ -38,7 +38,7 @@ public class PessoasController : Controller
             if (result == null || !result.Any())
             {
                 ViewBag.Message = "Nenhuma pessoa encontrada.";
-                return View("Error");
+                return View();
             }
 
             return View(result);
@@ -88,7 +88,6 @@ public class PessoasController : Controller
         }
     }
     [HttpPost]
-    //public async Task<ActionResult<PessoaViewModel>> CriarNovaPessoa(PessoaViewModel pessoaVM)
     public async Task<ActionResult<PessoaUsuarioViewModel>> CriarNovaPessoa(PessoaUsuarioViewModel pessoaUsuarioVM)
     {
         var token = ObterTokenJwt();

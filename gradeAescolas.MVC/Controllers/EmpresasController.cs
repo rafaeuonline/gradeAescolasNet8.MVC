@@ -32,7 +32,8 @@ public class EmpresasController : Controller
 
             if (result == null || !result.Any())
             {
-                return View("Error");
+                ViewBag.Message = "Nenhuma empresa encontrada.";
+                return View();
             }
             return View(result);
         }

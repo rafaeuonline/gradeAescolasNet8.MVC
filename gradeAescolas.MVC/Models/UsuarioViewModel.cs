@@ -14,4 +14,7 @@ public class UsuarioViewModel
     [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&*])[a-zA-Z\d!@#$%&*]{6,}$",
         ErrorMessage = "A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial (!@#$%&*).")]
     public string? Password { get; set; }
+
+    //public int PessoaId { get; set; }
+    //public int EmpresaId { get; set; }
 }

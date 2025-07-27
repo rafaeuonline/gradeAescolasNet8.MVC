@@ -1,0 +1,82 @@
+﻿@model ProfessorViewModel
+
+<!-- Professores Begin -->
+<div class="col-xl-6">
+    <div class="card height-equal">
+        <div class="card-header pb-0">
+            <h4>Detalhes do Professor</h4>
+            <p class="f-m-light mt-1"> 
+                Detalhes do Professor <b>@* @(Model.Nome + " " + Model.Sobrenome) -  *@ PessoaId:@(Model.PessoaId) e ProfId:@(Model.ProfessorId) </b>
+            </p>
+        </div>
+        <div class="card-body custom-input" asp-validation-summary="All">
+            <form class="row g-3" asp-action="AtualizarProfessor" asp-route-id="@Model.ProfessorId" method="get">
+                <div class="col-12">
+                    <label asp-for="Pessoa.Nome" class="form-label"></label>
+                    <input asp-for="Pessoa.Nome" class="form-control" type="text" placeholder="Insira o Nome" disabled="disabled" required>
+                    <span asp-validation-for="Pessoa.Nome" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Pessoa.Sobrenome" class="form-label"></label>
+                    <input asp-for="Pessoa.Sobrenome" class="form-control" type="text" placeholder="Insira o Sobrenome" disabled="disabled" required>
+                    <span asp-validation-for="Pessoa.Sobrenome" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Pessoa.CPFFormatado" class="form-label"></label>
+                    <input asp-for="Pessoa.CPFFormatado" class="form-control" type="text" placeholder="Insira o CPF" disabled="disabled" required>
+                    <span asp-validation-for="Pessoa.CPFFormatado" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Pessoa.DataNascimento" class="form-label"></label>
+                    <input asp-for="Pessoa.DataNascimento" class="form-control" type="date" placeholder="Insira a Data de Nascimento" disabled="disabled" required>
+                    <span asp-validation-for="Pessoa.DataNascimento" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Pessoa.Email" class="form-label"></label>
+                    <input asp-for="Pessoa.Email" class="form-control" type="text" placeholder="Insira o E-mail" disabled="disabled" required>
+                    <span asp-validation-for="Pessoa.Email" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Pessoa.Telefone1Formatado" class="form-label"></label>
+                    <input asp-for="Pessoa.Telefone1Formatado" class="form-control" type="text" placeholder="Insira o Telefone Principal" disabled="disabled" required>
+                    <span asp-validation-for="Pessoa.Telefone1Formatado" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Pessoa.Telefone2Formatado" class="form-label"></label>
+                    <input asp-for="Pessoa.Telefone2Formatado" class="form-control" type="text" placeholder="Insira outro Telefone (Opcional)" disabled="disabled">
+                    <span asp-validation-for="Pessoa.Telefone2Formatado" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="EmpresaId" class="form-label"></label>
+                    <select asp-for="EmpresaId" class="form-control" asp-items="ViewBag.EmpresaId" disabled="disabled"></select>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Graduacao" class="form-label"></label>
+                    <input asp-for="Graduacao" class="form-control" type="text" placeholder="Insira a graduação" disabled="disabled" required>
+                    <span asp-validation-for="Graduacao" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Especializacao" class="form-label"></label>
+                    <input asp-for="Especializacao" class="form-control" type="text" placeholder="Insira a Especializacao" disabled="disabled" required>
+                    <span asp-validation-for="Especializacao" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Registro" class="form-label"></label>
+                    <input asp-for="Registro" class="form-control" type="text" placeholder="Insira a Especializacao" disabled="disabled" required>
+                    <span asp-validation-for="Registro" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <input class="btn btn-primary me-3" type="submit" value="Editar">
+                    <a asp-action="Index" class="btn btn-light">Retornar</a>
+                </div>
+                @if (ViewBag.Erro != null)
+                {
+                    <div class="alert alert-danger">
+                        <h4 class="alert-heading">@ViewBag.Erro</h4>
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Professores End -->
