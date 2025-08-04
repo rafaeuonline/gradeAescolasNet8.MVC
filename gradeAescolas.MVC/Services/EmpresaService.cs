@@ -8,7 +8,7 @@ namespace gradeAescolas.MVC.Services;
 public class EmpresaService : IEmpresaService
 {
     private const string apiEndpoint = "/v1/empresas/";
-
+    
     private readonly JsonSerializerOptions _options;
     private readonly IHttpClientFactory _clientFactory;
 
@@ -44,6 +44,46 @@ public class EmpresaService : IEmpresaService
         }
         return empresasVM;
     }
+
+    //x-page: 1 
+    //x-pagesize: 10 
+    //x-powered-by: ASP.NET
+    //x-total-count: 4 
+    //x-total-pages: 1 
+    public async Task<(IEnumerable<EmpresaViewModel> empresas, int totalCount, int totalPages)> GetEmpresasPaginacaoAsync(int page, int pageSize, string? search, string token)
+    {
+        var client = _clientFactory.CreateClient("GradeAescolasApi");
+        PutTokenInHeaderAuthorization(client, token);
+
+        //localhost:8080/v1/empresas/pag?page=1&pageSize=10&search=teste
+        var url = $"{apiEndpoint}pag?page={page}&pageSize={pageSize}";
+        if (!string.IsNullOrWhiteSpace(search))
+        {
+            url += $"&search={Uri.EscapeDataString(search)}";
+        }
+
+        using var response = await client.GetAsync(url);
+        if (response.IsSuccessStatusCode)
+        {
+            var stream = await response.Content.ReadAsStreamAsync();
+            var empresasVM = await JsonSerializer.DeserializeAsync<IEnumerable<EmpresaViewModel>>(stream, _options);
+
+            // Cuidado: se header não existir, evita exceção
+            var totalCount = response.Headers.TryGetValues("x-total-count", out var countValues)
+                             ? int.Parse(countValues.FirstOrDefault() ?? "0")
+                             : 0;
+
+            var totalPages = response.Headers.TryGetValues("x-total-pages", out var pageValues)
+                             ? int.Parse(pageValues.FirstOrDefault() ?? "0")
+                             : 0;
+
+            return (empresasVM ?? Enumerable.Empty<EmpresaViewModel>(), totalCount, totalPages);
+        }
+
+        // Erro (ex: Unauthorized)
+        return (Enumerable.Empty<EmpresaViewModel>(), 0, 0);
+    }
+
 
     public async Task<EmpresaViewModel> GetEmpresaByIdAsync(int id, string token)
     {
@@ -127,14 +167,8 @@ public class EmpresaService : IEmpresaService
         }
     }
 
-    public async Task<(IEnumerable<EmpresaViewModel> empresas, int totalCount)> GetEmpresasPaginacaoAsync(int page, int pageSize, string? search, string token)
-    {
-        throw new NotImplementedException();
-    }
-
     private static void PutTokenInHeaderAuthorization(HttpClient client, string token)
     {
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
     }
-
 }

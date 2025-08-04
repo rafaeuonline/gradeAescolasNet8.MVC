@@ -16,6 +16,7 @@ public class EmpresasController : Controller
         _empresaService = empresaService;
     }
 
+    // Lista empresas, Get para a view Início
     [HttpGet]
     public async Task<ActionResult<IEnumerable<EmpresaViewModel>>> Index()
     {
@@ -48,6 +49,48 @@ public class EmpresasController : Controller
             return View("Error");
         }
     }
+    // Lista empresas, Get para a view Fim
+
+    // Lista empresas, Get para a view com paginação Início
+    [HttpGet]
+    public async Task<IActionResult> ListaEmpresasPag(int pageNumber = 1, int pageSize = 10, string? search = null)
+    {
+        var token = ObterTokenJwt();
+        if (string.IsNullOrWhiteSpace(token))
+        {
+            ViewBag.Message = "Você não está autenticado. Por favor, faça login.";
+            return View("Error");
+        }
+
+        try
+        {
+            var (empresas, totalCount, totalPages) =
+                await _empresaService.GetEmpresasPaginacaoAsync(pageNumber, pageSize, search, token);
+
+            var viewModel = new EmpresaPaginadaViewModel
+            {
+                Empresas = empresas.ToList(),
+                TotalCount = totalCount,
+                TotalPages = totalPages,
+                PageSize = pageSize,
+                PageNumber = pageNumber,
+                SearchTerm = search
+            };
+
+            return View(viewModel);
+        }
+        catch (UnauthorizedAccessException)
+        {
+            ViewBag.Message = "Sua sessão expirou. Por favor, faça login novamente.";
+            return View("Error");
+        }
+        catch (Exception ex)
+        {
+            ViewBag.Message = "Erro: " + ex.Message;
+            return View("Error");
+        }
+    }
+    // Lista empresas, Get para a view com paginação Fim
 
     //Criar nova empresa, Get para a view, e Post para atualizar Início
     [HttpGet]

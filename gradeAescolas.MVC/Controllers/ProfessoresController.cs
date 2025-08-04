@@ -187,6 +187,8 @@ public class ProfessoresController : Controller
                 return View("Error");
             }
 
+            await PreencherDropdownEmpresas(token);
+
             var profIdPessoa = professor.PessoaId;
             //professorVM.EmpresaId = professor.EmpresaId;
 

@@ -163,14 +163,16 @@
                       -->
                     </div>
                     <div class="col-xl-3 col-sm-5 box-col-4">
-                      <ol class="breadcrumb"> 
+                      @* <ol class="breadcrumb"> 
                         <li class="breadcrumb-item"><a href="/">
                             <svg class="stroke-icon">
                               <use href="/assets/svg/icon-sprite.svg#stroke-home"></use>
                             </svg></a></li>
                         <li class="breadcrumb-item">Dashboard</li>
                         <li class="breadcrumb-item active">Default</li>
-                      </ol>
+                      </ol> *@
+                      <!-- BreadCrumb Dinâmico-->
+                      @await Component.InvokeAsync("Breadcrumb")
                     </div>
                   </div>
                 </div>

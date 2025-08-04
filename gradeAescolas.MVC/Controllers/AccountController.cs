@@ -3,6 +3,7 @@ using gradeAescolas.MVC.Services;
 using gradeAescolas.MVC.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Common;
 using System.Security.Claims;
 using System.Text.Json;
 
@@ -26,8 +27,16 @@ public class AccountController : Controller
 
         if (User.Identity != null && User.Identity.IsAuthenticated)
         {
-            TempData["Mensagem"] = "Você já está logado no sistema.";
-            return RedirectToAction("Index", "Home"); // ou o controller/action do seu sistema principal
+            // Remove o cookie com o token
+            Response.Cookies.Delete("X-Access-Token");
+
+            // (Opcional) Limpa a sessão
+            HttpContext.Session.Clear();
+
+            //TempData["Mensagem"] = "Você já está logado no sistema.";
+            //return RedirectToAction("Index", "Home"); // ou o controller/action do seu sistema principal
+
+
         }
 
         return View();
@@ -78,7 +87,7 @@ public class AccountController : Controller
         {
             HttpOnly = true,
             Secure = true, // Use true if using HTTPS
-            SameSite = SameSiteMode.Strict, // Adjust as necessary
+            SameSite = SameSiteMode.None, // Adjust as necessary
             Expires = result.Expiration
         });
 

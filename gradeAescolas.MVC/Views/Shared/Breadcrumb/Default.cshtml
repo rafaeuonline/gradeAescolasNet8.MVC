@@ -1,0 +1,27 @@
+﻿@model List<(string Label, string? Controller, string? Action)>
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/">
+            <svg class="stroke-icon">
+                <use href="/assets/svg/icon-sprite.svg#stroke-home"></use>
+            </svg>
+        </a>
+    </li>
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        var item = Model[i];
+        bool isLast = i == Model.Count - 1;
+
+        if (!isLast && !string.IsNullOrEmpty(item.Controller) && !string.IsNullOrEmpty(item.Action))
+        {
+            <li class="breadcrumb-item">
+                <a asp-controller="@item.Controller" asp-action="@item.Action">@item.Label</a>
+            </li>
+        }
+        else
+        {
+            <li class="breadcrumb-item active text-muted" aria-current="page">@item.Label</li>
+        }
+    }
+</ol>
