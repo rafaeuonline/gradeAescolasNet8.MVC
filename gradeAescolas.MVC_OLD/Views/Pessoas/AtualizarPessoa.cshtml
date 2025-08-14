@@ -1,0 +1,66 @@
+﻿@model PessoaViewModel
+
+<div class="col-xl-6">
+    <div class="card height-equal">
+        <div class="card-header pb-0">
+            <h4>Editar Pessoa</h4>
+            <p class="f-m-light mt-1">
+                Atualização da Pessoa <b>@(Model.Nome + " " + Model.Sobrenome) - Id:@(Model.PessoaId)</b>.
+            </p>
+        </div>
+        <div class="card-body custom-input" asp-validation-summary="All">
+            <form class="row g-3" asp-action="AtualizarPessoa" method="post">
+                <input type="hidden" asp-for="PessoaId" />
+                <div class="col-12">
+                    <label asp-for="Nome" class="form-label"></label>
+                    <input asp-for="Nome" class="form-control" type="text" placeholder="Insira o Nome" required>
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Sobrenome" class="form-label"></label>
+                    <input asp-for="Sobrenome" class="form-control" type="text" placeholder="Insira o Sobrenome" required>
+                    <span asp-validation-for="Sobrenome" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="CPFFormatado" class="form-label"></label>
+                    <input asp-for="CPFFormatado" class="form-control" type="text" placeholder="Insira o CPF" required>
+                    <span asp-validation-for="CPFFormatado" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="DataNascimento" class="form-label"></label>
+                    <input asp-for="DataNascimento" class="form-control" type="date" placeholder="Insira a Data de Nascimento" required>
+                    <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" type="text" placeholder="Insira o E-mail" required>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Telefone1Formatado" class="form-label"></label>
+                    <input asp-for="Telefone1Formatado" class="form-control" type="text" placeholder="Insira o Telefone Principal" required>
+                    <span asp-validation-for="Telefone1Formatado" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Telefone2Formatado" class="form-label"></label>
+                    <input asp-for="Telefone2Formatado" class="form-control" type="text" placeholder="Insira outro Telefone (Opcional)">
+                    <span asp-validation-for="Telefone2Formatado" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="EmpresaId" class="form-label"></label>
+                    <select asp-for="EmpresaId" class="form-control" asp-items="ViewBag.EmpresaId"></select>
+                </div>
+                <div class="col-12">
+                    <input class="btn btn-primary me-3" type="submit" value="Salvar">
+                    <a asp-action="Index" class="btn btn-light">Retornar</a>
+                </div>
+                @if (ViewBag.Erro != null)
+                {
+                    <div class="alert alert-danger">
+                        <h4 class="alert-heading">@ViewBag.Erro</h4>
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+</div>

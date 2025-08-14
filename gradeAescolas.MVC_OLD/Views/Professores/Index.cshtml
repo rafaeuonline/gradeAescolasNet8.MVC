@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ProfessorViewModel>
+
+<!-- Professores Begin -->
+<div class="col-sm-12">
+    <div class="card">
+        <div class="card-header pb-0 card-no-border">
+            <h4>Professores</h4><span>Sessão destinada a manipulação dos Professores do sistema.</span>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive custom-scrollbar">
+                <div class="btn-showcase">
+                    <a asp-action="CriarNovoProfessor" class="btn btn-primary">
+                        <span title="Criar Professor">Novo Professor</span>
+                    </a>
+                </div>
+            @if (ViewBag.Message != null)
+            {
+                <div class="alert alert-danger">
+                        <h4 class="alert-heading">@ViewBag.Message</h4>
+                </div>
+            } 
+            else
+            {
+                <table class="display" id="basic-1">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.ProfessorId)</th>
+                            <th>@Html.DisplayNameFor(model => model.Pessoa.Nome)</th>
+                            <th>@Html.DisplayNameFor(model => model.Pessoa.Sobrenome)</th>
+@*                             <th>@Html.DisplayNameFor(model => model.CPFFormatado)</th>
+                            <th>@Html.DisplayNameFor(model => model.DataNascimentoFormatado)</th> *@
+                            <th>@Html.DisplayNameFor(model => model.Pessoa.Email)</th>
+                            <th>@Html.DisplayNameFor(model => model.Pessoa.Telefone1Formatado)</th>
+@*                             <th>@Html.DisplayNameFor(model => model.Telefone2Formatado)</th> *@
+                            <th>@Html.DisplayNameFor(model => model.Graduacao)</th>
+                            <th>@Html.DisplayNameFor(model => model.Registro)</th>
+                            <th>@Html.DisplayNameFor(model => model.PessoaId)</th>
+                            <th>@Html.DisplayNameFor(model => model.EmpresaId)</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>@Html.DisplayFor(modelItem => item.ProfessorId)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Pessoa.Nome)</td>
+                                 <td>@Html.DisplayFor(modelItem => item.Pessoa.Sobrenome)</td>
+@*                                <td>@Html.DisplayFor(modelItem => item.CPFFormatado)</td>
+                                <td>@Html.DisplayFor(modelItem => item.DataNascimentoFormatado)</td> *@
+                                <td>@Html.DisplayFor(modelItem => item.Pessoa.Email)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Pessoa.Telefone1Formatado)</td>
+@*                                 <td>@Html.DisplayFor(modelItem => item.Telefone2Formatado)</td> *@
+                                <td>@Html.DisplayFor(modelItem => item.Graduacao)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Registro)</td>
+                                <td>@Html.DisplayFor(modelItem => item.PessoaId)</td>
+                                <td>@Html.DisplayFor(modelItem => item.EmpresaId)</td>
+                                <td>
+                                    <ul class="action">
+                                        <li class="edit"> <a asp-action="AtualizarProfessor" asp-route-id="@item.ProfessorId" title="Editar"><i class="icon-pencil-alt"></i></a></li>
+                                        <li class="edit"> <a asp-action="DetalharProfessor" asp-route-id="@item.ProfessorId" title="Detalhar"><i class="icon-layers-alt"></i></a></li>
+                                        <li class="delete"> <a asp-action="DeletarProfessor" asp-route-id="@item.ProfessorId" title="Deletar"><i class="icon-trash"></i></a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Professores End -->

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<gradeAescolas.MVC.Models.EmpresaViewModel>
+
+<!-- Empresas Begin -->
+<div class="col-sm-12">
+    <div class="card">
+        <div class="card-header pb-0 card-no-border">
+            <h4>Empresas</h4><span>Sessão destinada a manipulação das empresas do sistema.</span>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive custom-scrollbar">
+                <div class="btn-showcase">
+                    @* <button asp-action="CriarNovaEmpresa" title="Criar Empresa" class="btn btn-primary" type="button">Nova Empresa</button> *@
+                    <a asp-action="CriarNovaEmpresa" class="btn btn-primary">
+                        <span title="Criar Empresa">Nova Empresa</span>
+                    </a>
+                </div>
+                @if (ViewBag.Message != null)
+                {
+                    <div class="alert alert-danger">
+                        <h4 class="alert-heading">@ViewBag.Message</h4>
+                    </div>
+                }
+                <table class="display" id="basic-1">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.EmpresaId)</th>
+                            <th>@Html.DisplayNameFor(model => model.NomeFantasia)</th>
+                            <th>@Html.DisplayNameFor(model => model.RazaoSocial)</th>
+                            <th>@Html.DisplayNameFor(model => model.CNPJFormatado)</th>
+                            <th>@Html.DisplayNameFor(model => model.Email)</th>
+                            <th>@Html.DisplayNameFor(model => model.TelefoneFormatado)</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.EmpresaId)</td>
+                                <td>@Html.DisplayFor(modelItem => item.NomeFantasia)</td>
+                                <td>@Html.DisplayFor(modelItem => item.RazaoSocial)</td>
+                                <td>@Html.DisplayFor(modelItem => item.CNPJFormatado)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                <td>@Html.DisplayFor(modelItem => item.TelefoneFormatado)</td>
+                                <td>
+                                    <ul class="action">
+                                        <li class="edit"> <a asp-action="AtualizarEmpresa" asp-route-id="@item.EmpresaId" title="Editar"><i class="icon-pencil-alt"></i></a></li>
+                                        <li class="delete"><a asp-action="DeletarEmpresa" asp-route-id="@item.EmpresaId" title="Deletar"><i class="icon-trash"></i></a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Empresas End -->

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PessoaViewModel>
+
+<!-- Pessoas Begin -->
+<div class="col-sm-12">
+    <div class="card">
+        <div class="card-header pb-0 card-no-border">
+            <h4>Pessoas</h4><span>Sessão destinada a manipulação das Pessoas do sistema.</span>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive custom-scrollbar">
+                <div class="btn-showcase">
+                    <a asp-action="CriarNovaPessoa" class="btn btn-primary">
+                        <span title="Criar Pessoa">Nova Pessoa</span>
+                    </a>
+                </div>
+                @if (ViewBag.Message != null)
+                {
+                    <div class="alert alert-danger">
+                        <h4 class="alert-heading">@ViewBag.Message</h4>
+                    </div>
+                }
+                <table class="display" id="basic-1">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.PessoaId)</th>
+                            <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                            <th>@Html.DisplayNameFor(model => model.Sobrenome)</th>
+                            <th>@Html.DisplayNameFor(model => model.CPFFormatado)</th>
+                            <th>@Html.DisplayNameFor(model => model.DataNascimentoFormatado)</th>
+                            <th>@Html.DisplayNameFor(model => model.Email)</th>
+                            <th>@Html.DisplayNameFor(model => model.Telefone1Formatado)</th>
+                            <th>@Html.DisplayNameFor(model => model.Telefone2Formatado)</th>
+                            <th>@Html.DisplayNameFor(model => model.EmpresaId)</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.PessoaId)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Sobrenome)</td>
+                                <td>@Html.DisplayFor(modelItem => item.CPFFormatado)</td>
+                                <td>@Html.DisplayFor(modelItem => item.DataNascimentoFormatado)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Telefone1Formatado)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Telefone2Formatado)</td>
+                                <td>@Html.DisplayFor(modelItem => item.EmpresaId)</td>
+                                <td>
+                                    <ul class="action">
+                                        <li class="edit"> <a asp-action="AtualizarPessoa" asp-route-id="@item.PessoaId" title="Editar"><i class="icon-pencil-alt"></i></a></li>
+                                        <li class="edit"> <a asp-action="DetalhesPessoa" asp-route-id="@item.PessoaId" title="Detalhar"><i class="icon-layers-alt"></i></a></li>
+                                        <li class="delete"> <a asp-action="DeletarPessoa" asp-route-id="@item.PessoaId" title="Deletar"><i class="icon-trash"></i></a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Pessoas End -->

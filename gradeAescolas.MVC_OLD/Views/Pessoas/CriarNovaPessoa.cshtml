@@ -1,0 +1,87 @@
+﻿@model PessoaUsuarioViewModel
+
+<div class="col-xl-6">
+    <div class="card height-equal">
+        <div class="card-header pb-0">
+            <h4>Cadastro de Nova Pessoa</h4>
+            <p class="f-m-light mt-1">
+                Insira as informações abaixo para criar uma Nova Pessoa.
+            </p>
+        </div>
+        <div class="card-body custom-input" asp-validation-summary="All">
+            <form class="row g-3" asp-action="CriarNovaPessoa">
+                <div class="col-12">
+                    <label asp-for="Pessoa.Nome" class="form-label"></label>
+                    <input asp-for="Pessoa.Nome" class="form-control" type="text" placeholder="Insira o Nome" required>
+                    <span asp-validation-for="Pessoa.Nome" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Pessoa.Sobrenome" class="form-label"></label>
+                    <input asp-for="Pessoa.Sobrenome" class="form-control" type="text" placeholder="Insira o Sobrenome" required>
+                    <span asp-validation-for="Pessoa.Sobrenome" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Pessoa.CPFFormatado" class="form-label"></label>
+                    <input asp-for="Pessoa.CPFFormatado" class="form-control" type="text" placeholder="Insira o CPF" required>
+                    <span asp-validation-for="Pessoa.CPFFormatado" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Pessoa.DataNascimento" class="form-label"></label>
+                    <input asp-for="Pessoa.DataNascimento" class="form-control" type="date" placeholder="Insira a Data de Nascimento" required>
+                    <span asp-validation-for="Pessoa.DataNascimento" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Pessoa.Email" class="form-label"></label>
+                    <input asp-for="Pessoa.Email" class="form-control" type="text" placeholder="Insira o E-mail" required>
+                    <span asp-validation-for="Pessoa.Email" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Pessoa.Telefone1Formatado" class="form-label"></label>
+                    <input asp-for="Pessoa.Telefone1Formatado" class="form-control" type="text" placeholder="Insira o Telefone Principal" required>
+                    <span asp-validation-for="Pessoa.Telefone1Formatado" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Pessoa.Telefone2Formatado" class="form-label"></label>
+                    <input asp-for="Pessoa.Telefone2Formatado" class="form-control" type="text" placeholder="Insira outro Telefone (Opcional)">
+                    <span asp-validation-for="Pessoa.Telefone2Formatado" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Pessoa.EmpresaId" class="form-label"></label>
+                    <select asp-for="Pessoa.EmpresaId" class="form-control" asp-items="ViewBag.EmpresaId"></select>
+                </div><br />
+                <div class="col-md-8">
+                    <div class="card">
+                      <div class="card-header pb-0">
+                        <p class="f-m-light mt-1">
+                          Preencha os dados abaixo para o Login no Sistema.</p>
+                      </div>
+                      <div class="card-body">
+                        <div class="card-wrapper border rounded-3">
+                            <div class="col-md-12">
+                                <label asp-for="Usuario.UserName" class="form-label"></label>
+                                <input asp-for="Usuario.UserName" class="form-control" type="text" placeholder="Insira o nome de Usuário">
+                                <span asp-validation-for="Usuario.UserName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-12">
+                                <label asp-for="Usuario.Password" class="form-label"></label>
+                                <input asp-for="Usuario.Password" class="form-control" type="text" placeholder="Insira a Senha">
+                                <span asp-validation-for="Usuario.Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <input class="btn btn-primary me-3" type="submit" value="Criar">
+                    <a asp-action="Index" class="btn btn-light">Retornar</a>
+                </div>
+                @if (ViewBag.Erro != null)
+                {
+                    <div class="alert alert-danger">
+                        <h4 class="alert-heading">@ViewBag.Erro</h4>
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+</div>

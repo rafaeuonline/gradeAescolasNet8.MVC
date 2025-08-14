@@ -1,0 +1,47 @@
+﻿@model gradeAescolas.MVC.Models.EmpresaViewModel
+
+<div class="col-xl-6">
+    <div class="card height-equal">
+        <div class="card-header pb-0">
+            <h4>Atualizar Empresa</h4>
+            <p class="f-m-light mt-1">
+                Alterar as informações abaixo para alterar a Empresa.
+            </p>
+        </div>
+        <div class="card-body custom-input" asp-validation-summary="All">
+            <form class="row g-3" asp-action="AtualizarEmpresa">
+                <input type="hidden" asp-for="EmpresaId" />
+                <div class="col-12">
+                    <label asp-for="NomeFantasia" class="form-label"></label>
+                    <input asp-for="NomeFantasia" class="form-control" type="text" placeholder="Insira o Nome Fantasia" required>
+                </div>
+                <div class="col-12">
+                    <label asp-for="RazaoSocial" class="form-label"></label>
+                    <input asp-for="RazaoSocial" class="form-control" type="text" placeholder="Insira a Razão Social" required>
+                </div>
+                <div class="col-12">
+                    <label asp-for="CNPJFormatado" class="form-label"></label>
+                    <input asp-for="CNPJFormatado" class="form-control" type="text" placeholder="Insira o CNPJ" required>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" type="text" placeholder="Insira o E-mail" required>
+                </div>
+                <div class="col-12">
+                    <label asp-for="TelefoneFormatado" class="form-label"></label>
+                    <input asp-for="TelefoneFormatado" class="form-control" type="text" placeholder="Insira o Telefone" required>
+                </div>
+                <div class="col-12">
+                    <input class="btn btn-primary" type="submit" value="Salvar">
+                    <a asp-action="Index" class="btn btn-light">Retornar</a>
+                </div>
+                @if (ViewBag.Erro != null)
+                {
+                    <div class="alert alert-danger">
+                        <h4 class="alert-heading">@ViewBag.Erro</h4>
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+</div>

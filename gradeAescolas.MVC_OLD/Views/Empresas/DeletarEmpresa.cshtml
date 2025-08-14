@@ -1,0 +1,48 @@
+﻿@model gradeAescolas.MVC.Models.EmpresaViewModel
+
+<div class="col-xl-6">
+    <div class="card height-equal">
+        <div class="card-header pb-0">
+            <h4>Deletar Empresa</h4>
+            <p class="f-m-light mt-1">
+                Confirma a exclusão desta empresa?
+            </p>
+        </div>
+        <div class="card-body custom-input" asp-validation-summary="All">
+            @* <form class="row g-3" asp-action="AtualizarEmpresa"> *@
+               @*  <input type="hidden" asp-for="EmpresaId" /> *@
+                <div class="col-12">
+                    <label asp-for="NomeFantasia" class="form-label"></label>
+                    <input asp-for="NomeFantasia" class="form-control" type="text" placeholder="Insira o Nome Fantasia" disabled="disabled" required>
+                </div>
+                <div class="col-12">
+                    <label asp-for="RazaoSocial" class="form-label"></label>
+                    <input asp-for="RazaoSocial" class="form-control" type="text" placeholder="Insira a Razão Social" disabled="disabled" required>
+                </div>
+                <div class="col-12">
+                    <label asp-for="CNPJFormatado" class="form-label"></label>
+                    <input asp-for="CNPJFormatado" class="form-control" type="text" placeholder="Insira o CNPJ" disabled="disabled" required>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" type="text" placeholder="Insira o E-mail" disabled="disabled" required>
+                </div>
+                <div class="col-12">
+                    <label asp-for="TelefoneFormatado" class="form-label"></label>
+                    <input asp-for="TelefoneFormatado" class="form-control" type="text" placeholder="Insira o Telefone" disabled="disabled" required>
+                </div>
+                <div class="col-12"><BR />
+                    <form class="row g-3" asp-action="DeletarEmpresa">
+                        <input type="hidden" asp-for="EmpresaId" />
+                        <div class="col-12">
+                            <input class="btn btn-danger" type="submit" value="Deletar">
+                            <a asp-action="Index" class="btn btn-light">Retornar</a>
+                        </div>
+                    </form>
+                </div>
+
+          @*   </form> *@
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,146 @@
+﻿@model EmpresaPaginadaViewModel
+@{
+    ViewData["Title"] = "Lista de Empresas";
+}
+
+<!-- Empresas Begin -->
+<div class="col-sm-12">
+    <div class="card">
+        <div class="card-header pb-0 card-no-border">
+            <h4>Empresas Paginadas</h4><span>Sessão destinada a manipulação das empresas do sistema (com paginação \o/).</span>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive custom-scrollbar">
+                <div class="btn-showcase">
+                    <a asp-action="CriarNovaEmpresa" class="btn btn-primary">
+                        <i class="fa fa-info-circle"></i> Nova Empresa
+                    </a>
+                </div>
+                <div class="card-body custom-input">
+                    <form asp-action="ListaEmpresasPag" method="get" class=" row g-3">
+
+                        <div class="col-md-2" >
+                            <div class="input-group">
+                                <input type="text" name="search" class="form-control light-light" placeholder="Pesquisar por nome..." value="@Context.Request.Query["search"]" aria-label="Recipient's username" aria-describedby="button-addon2" />
+                                <button type="submit" class="btn btn-light" id="button-addon2">Buscar</button>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <select name="pageSize" class="form-select light-light text-gray" id="validationDefault04" onchange="this.form.submit()">
+                                <option value="2">Selecione ...</option>
+                                <option value="2">2 por página</option>
+                                <option value="10">10 por página</option>
+                                <option value="20">20 por página</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                @if (ViewBag.Message != null)
+                {
+                    <div class="alert alert-danger">
+                        <h4 class="alert-heading">@ViewBag.Message</h4>
+                    </div>
+                }
+                <table class="table" @* id="basic-1" *@>
+                    @{
+                        var empresas = Model.Empresas.FirstOrDefault();
+                    }
+
+                    @if (empresas != null)
+                    {
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(_ => empresas.EmpresaId)</th>
+                            <th>@Html.DisplayNameFor(_ => empresas.NomeFantasia)</th>
+                            <th>@Html.DisplayNameFor(_ => empresas.RazaoSocial)</th>
+                            <th>@Html.DisplayNameFor(_ => empresas.CNPJFormatado)</th>
+                            <th>@Html.DisplayNameFor(_ => empresas.Email)</th>
+                            <th>@Html.DisplayNameFor(_ => empresas.TelefoneFormatado)</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    }
+                    <tbody>
+                    @foreach (var item in Model.Empresas)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.EmpresaId)</td>
+                            <td>@Html.DisplayFor(modelItem => item.NomeFantasia)</td>
+                            <td>@Html.DisplayFor(modelItem => item.RazaoSocial)</td>
+                            <td>@Html.DisplayFor(modelItem => item.CNPJFormatado)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                            <td>@Html.DisplayFor(modelItem => item.TelefoneFormatado)</td>
+                            <td>
+                                <ul class="action">
+                                    <li class="edit"> <a asp-action="AtualizarEmpresa" asp-route-id="@item.EmpresaId" title="Editar"><i class="icon-pencil-alt"></i></a></li>
+                                    <li class="delete"><a asp-action="DeletarEmpresa" asp-route-id="@item.EmpresaId" title="Deletar"><i class="icon-trash"></i></a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+
+                @if (Model.TotalPages > 1)
+                {
+                  <div class="card-body">
+                    <nav aria-label="Paginação">
+                            <ul class="pagination justify-content-end pagination-sm pagination-primary pagin-border-primary">
+                                @* <ul class="pagination pagination-primary pagin-border-primary"> *@
+
+                            <!-- Primeira página -->
+                            <li class="page-item @(Model.PageNumber == 1 ? "disabled" : "")">
+                                <a class="page-link"
+                                   asp-action="ListaEmpresasPag"
+                                   asp-route-pageNumber="1"
+                                   asp-route-pageSize="@Model.PageSize"
+                                   asp-route-search="@Model.SearchTerm">« Primeira</a>
+                            </li>
+
+                            <!-- Página anterior -->
+                            <li class="page-item @(Model.PageNumber == 1 ? "disabled" : "")">
+                                <a class="page-link"
+                                   asp-action="ListaEmpresasPag"
+                                   asp-route-pageNumber="@(Model.PageNumber - 1)"
+                                   asp-route-pageSize="@Model.PageSize"
+                                   asp-route-search="@Model.SearchTerm">‹ Anterior</a>
+                            </li>
+
+                            <!-- Páginas numéricas -->
+                            @for (int i = 1; i <= Model.TotalPages; i++)
+                            {
+                                <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                                    <a class="page-link"
+                                       asp-action="ListaEmpresasPag"
+                                       asp-route-pageNumber="@i"
+                                       asp-route-pageSize="@Model.PageSize"
+                                       asp-route-search="@Model.SearchTerm">@i</a>
+                                </li>
+                            }
+
+                            <!-- Próxima página -->
+                            <li class="page-item @(Model.PageNumber == Model.TotalPages ? "disabled" : "")">
+                                <a class="page-link"
+                                   asp-action="ListaEmpresasPag"
+                                   asp-route-pageNumber="@(Model.PageNumber + 1)"
+                                   asp-route-pageSize="@Model.PageSize"
+                                   asp-route-search="@Model.SearchTerm">Próxima ›</a>
+                            </li>
+
+                            <!-- Última página -->
+                            <li class="page-item @(Model.PageNumber == Model.TotalPages ? "disabled" : "")">
+                                <a class="page-link"
+                                   asp-action="ListaEmpresasPag"
+                                   asp-route-pageNumber="@Model.TotalPages"
+                                   asp-route-pageSize="@Model.PageSize"
+                                   asp-route-search="@Model.SearchTerm">Última »</a>
+                            </li>
+                        </ul>
+                    </nav>
+                  </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Empresas End -->
