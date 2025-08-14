@@ -6,7 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Net.Http.Headers;
 using System.Text;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args); //rafa
 
 builder.Services.AddControllersWithViews(options =>
 {
